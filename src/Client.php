@@ -2,11 +2,11 @@
 
 namespace EcomailRaynet;
 
-use EcomailFlexibee\Exception\EcomailFlexibeeAnotherError;
-use EcomailFlexibee\Exception\EcomailFlexibeeInvalidAuthorization;
-use EcomailFlexibee\Exception\EcomailFlexibeeNoEvidenceResult;
-use EcomailFlexibee\Exception\EcomailFlexibeeRequestError;
-use EcomailFlexibee\Exception\EcomailFlexibeeSaveFailed;
+use EcomailRaynet\Exception\EcomailRaynetAnotherError;
+use EcomailRaynet\Exception\EcomailRaynetInvalidAuthorization;
+use EcomailRaynet\Exception\EcomailRaynetNoEvidenceResult;
+use EcomailRaynet\Exception\EcomailRaynetRequestError;
+use EcomailRaynet\Exception\EcomailRaynetSaveFailed;
 
 class Client
 {
@@ -105,10 +105,6 @@ class Client
 
         if (array_key_exists('success', $result) && !$result['success']) {
             throw new EcomailRaynetAnotherError($result);
-        }
-
-        if (isset($result['data'])) {
-            return $result['data'];
         }
 
         return $result;
