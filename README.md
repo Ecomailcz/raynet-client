@@ -1,5 +1,10 @@
 # Ecomail Raynet API client
 
+Installation:
+```
+composer require ecomailcz/raynet-client:~1.0.0
+```
+
 Usage:
 
 ```
