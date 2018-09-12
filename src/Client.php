@@ -85,7 +85,7 @@ class Client
             }
             // Check authorization
             elseif (curl_getinfo($ch, CURLINFO_HTTP_CODE) === 401) {
-                throw new EcomailRaynetInvalidAuthorization($this->user, $this->password, $url);
+                throw new EcomailRaynetInvalidAuthorization();
             } elseif (curl_getinfo($ch, CURLINFO_HTTP_CODE) === 400) {
                 if ($result['success'] === 'false') {
                     foreach ($result['results'] as $response) {
