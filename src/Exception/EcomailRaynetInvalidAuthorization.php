@@ -2,9 +2,9 @@
 
 namespace EcomailRaynet\Exception;
 
-use Exception;
+use Throwable;
 
-class EcomailRaynetInvalidAuthorization extends Exception
+class EcomailRaynetInvalidAuthorization extends Throwable
 {
     
 }
