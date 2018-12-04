@@ -7,6 +7,7 @@ use EcomailRaynet\Exception\EcomailRaynetInvalidAuthorization;
 use EcomailRaynet\Exception\EcomailRaynetNoEvidenceResult;
 use EcomailRaynet\Exception\EcomailRaynetRequestError;
 use EcomailRaynet\Exception\EcomailRaynetSaveFailed;
+use EcomailRaynet\Exception\EcomailRaynetNotFound;
 
 class Client
 {
