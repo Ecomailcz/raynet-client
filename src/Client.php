@@ -8,6 +8,7 @@ use EcomailRaynet\Exception\EcomailRaynetNoEvidenceResult;
 use EcomailRaynet\Exception\EcomailRaynetRequestError;
 use EcomailRaynet\Exception\EcomailRaynetSaveFailed;
 use EcomailRaynet\Exception\EcomailRaynetNotFound;
+use EcomailRaynet\Exception\EcomailRaynetInstanceNotFound;
 
 class Client
 {
@@ -82,6 +83,9 @@ class Client
         if (curl_getinfo($ch, CURLINFO_HTTP_CODE) !== 200 && curl_getinfo($ch, CURLINFO_HTTP_CODE) !== 201) {
 
             if (curl_getinfo($ch, CURLINFO_HTTP_CODE) === 404) {
+                if (isset($result['translatedMessage']) && $result['translatedMessage'] === 'Instance not found: potentus1') {
+                    throw new EcomailRaynetInstanceNotFound();
+                }
                 throw new EcomailRaynetNotFound();
             }
             // Check authorization
