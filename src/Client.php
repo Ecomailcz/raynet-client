@@ -83,7 +83,7 @@ class Client
         if (curl_getinfo($ch, CURLINFO_HTTP_CODE) !== 200 && curl_getinfo($ch, CURLINFO_HTTP_CODE) !== 201) {
 
             if (curl_getinfo($ch, CURLINFO_HTTP_CODE) === 404) {
-                if (isset($result['translatedMessage']) && $result['translatedMessage'] === 'Instance not found: potentus1') {
+                if (isset($result['translatedMessage']) && strpos($result['translatedMessage']), 'Instance not found') === 0) {
                     throw new EcomailRaynetInstanceNotFound();
                 }
                 throw new EcomailRaynetNotFound();
