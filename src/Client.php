@@ -9,6 +9,7 @@ use EcomailRaynet\Exception\EcomailRaynetRequestError;
 use EcomailRaynet\Exception\EcomailRaynetSaveFailed;
 use EcomailRaynet\Exception\EcomailRaynetNotFound;
 use EcomailRaynet\Exception\EcomailRaynetInstanceNotFound;
+use EcomailRaynet\Exception\EcomailRaynetRequestLimitReached;
 
 class Client
 {
@@ -106,6 +107,10 @@ class Client
 
         if (!$result) {
             return [];
+        }
+
+        if(isset($result['type']) && $result['type'] === 'RequestLimitReached') {
+            throw new EcomailRaynetRequestLimitReached();
         }
 
         if (array_key_exists('success', $result) && !$result['success']) {
