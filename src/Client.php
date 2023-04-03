@@ -93,7 +93,9 @@ class Client
             elseif (curl_getinfo($ch, CURLINFO_HTTP_CODE) === 401) {
                 throw new EcomailRaynetInvalidAuthorization();
             } elseif (curl_getinfo($ch, CURLINFO_HTTP_CODE) === 400) {
-                if ($result['success'] === 'false') {
+		if(!isset($result['success'])) {
+		    throw new EcomailRaynetRequestError($output);
+		} elseif ($result['success'] === 'false') {
                     foreach ($result['results'] as $response) {
                         foreach ($response['errors'] as $error) {
                             throw new EcomailRaynetRequestError($error['message']);
