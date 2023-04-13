@@ -69,6 +69,8 @@ class Client
         curl_setopt($ch, CURLOPT_URL, 'https://app.raynet.cz/' . $url);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $httpMethod);
         curl_setopt($ch, CURLOPT_USERAGENT, 'Ecomail.cz Raynet client (https://github.com/Ecomailcz/raynet-client)');
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5); 
+        curl_setopt($ch, CURLOPT_TIMEOUT, 20);
 
         if (count($postFields) !== 0) {
             curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($postFields));
