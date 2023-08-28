@@ -81,6 +81,11 @@ class Client
         }
 
         $output = curl_exec($ch);
+
+        if(is_bool($output)) {
+            throw new EcomailRaynetAnotherError(sprintf('Invalid response: %s', (string) $output));
+        }
+
         $result = json_decode($output, true);
 
         if (curl_getinfo($ch, CURLINFO_HTTP_CODE) !== 200 && curl_getinfo($ch, CURLINFO_HTTP_CODE) !== 201) {
