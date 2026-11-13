@@ -123,7 +123,11 @@ class Client
         }
 
         if (array_key_exists('success', $result) && !$result['success']) {
-            throw new EcomailRaynetAnotherError($result);
+            throw new EcomailRaynetAnotherError(sprintf(
+                'Request failed with HTTP %d: %s',
+                curl_getinfo($ch, CURLINFO_HTTP_CODE),
+                json_encode($result, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)
+            ));
         }
 
         return $result;
